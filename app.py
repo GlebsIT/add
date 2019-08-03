@@ -16,5 +16,6 @@ def login():
     user = {'username': 'Miguel'}
     return render_template('forms.html', title='Home', user=user, form=form)
 
+
 if __name__ == '__main__':
     app.run()

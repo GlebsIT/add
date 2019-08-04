@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>{{ title }} - Microblog</title>
+    </head>
+    <body>
+        <h1>Hello</h1>
+        <h1>Sign In</h1>
+        {% for skill in logic %}
+            <div><p>{{skill.id_parents }} says: <b>{{ skill.response }}</b></p></div>
+        {% endfor %}
+    </body>
+</html>

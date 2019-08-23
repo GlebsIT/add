@@ -1,9 +1,16 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from flask_wtf import Form
+from wtforms import StringField, BooleanField, SubmitField, HiddenField
 from wtforms.validators import DataRequired
 
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+
+class FormAddSkill(Form):
+    id_logic = StringField('id_logic')
+    id_parents = StringField('id_parents')
+    response = StringField('response', validators=[DataRequired()])
+    template = StringField('template')
+    button = StringField('button')
+    submit = SubmitField('ok')
+
+class FormDeleteSkill(Form):
+    id_del = HiddenField('id_del')
+    deletSub = SubmitField('delete')

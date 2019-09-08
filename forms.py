@@ -9,7 +9,9 @@ class FormAddSkill(Form):
     response = StringField('response', validators=[DataRequired()])
     template = StringField('template')
     button = StringField('button')
+    command = StringField('command')
     submit = SubmitField('ok')
+
 
 class FormDeleteSkill(Form):
     id_del = HiddenField('id_del')

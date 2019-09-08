@@ -21,6 +21,7 @@ class Logic(db.Model):
     id_parents = db.Column(db.String(64))
     response = db.Column(db.String(256))
     template = db.Column(db.String(256))
+    command = db.Column(db.String(256))
     button = db.Column(db.String(256))
 
     def __repr__(self):
@@ -41,12 +42,13 @@ def main():
 #   return render_template('forms.html', title='Home', user=user, form=form)
 
 
-@app.route('/add', methods=['GET', 'POST'])
-def add():
-    skill = Logic(id_parents='01', response='best skills', template='%%')
-    db.session.add(skill)
-    db.session.commit()
-    return render_template('bd.html', title='bd', skill=skill)
+# @app.route('/add', methods=['GET', 'POST'])
+# def add():
+#     skill = Logic(id_parents='01', response='best skills', template='%%')
+#     db.session.add(skill)
+#     db.session.commit()
+#     return render_template('bd.html', title='bd', skill=skill)
+
 
 def rekursia(logic,id_parents,iterator,rekurs_element):
     for val in logic:
@@ -54,7 +56,6 @@ def rekursia(logic,id_parents,iterator,rekurs_element):
             #iterator += 1
             rekurs_element[val.id_logic] = len(rekurs_element);
             rekursia(logic,val.id_logic,len(rekurs_element),rekurs_element)
-
 
 
 @app.route('/info', methods=['GET', 'POST'])
@@ -70,10 +71,11 @@ def info():
         skill.template = request.form.get('template')
         skill.response = request.form.get('response')
         skill.button = request.form.get('button')
+        skill.command = request.form.get('command')
         db.session.commit()
     elif request.form.get('id_parents') != None:
         skill = Logic(id_parents = request.form.get('id_parents'), response = request.form.get('response'),
-                      template = request.form.get('template'), button = request.form.get('button'))
+                      template = request.form.get('template'), button = request.form.get('button'), command = request.form.get('command'))
         db.session.add(skill)
         db.session.commit()
 
